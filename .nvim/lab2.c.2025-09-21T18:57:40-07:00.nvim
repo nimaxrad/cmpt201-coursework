@@ -1,0 +1,36 @@
+#include <stdbool.h>
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+int main() {
+  for (;;) {
+
+    printf("Enter your command:\n> ");
+    char *buff = NULL;
+    size_t size = 0;
+    char *path = NULL;
+    if (getline(&buff, &size, stdin) != -1L) {
+      char *fullpath = malloc(sizeof(char) * 100);
+      char *input_str = buff;
+      char *delim = " /\n\t\r";
+      char *token = NULL;
+      char *saveptr = NULL;
+      while ((token = strtok_r(input_str, delim, &saveptr))) {
+
+        printf("token:'%s'\n", token);
+        input_str = NULL;
+      }
+      strcpy(fullpath, buff);
+
+      printf("::%d", strcspn(fullpath,'\n'));
+      printf("strong input: '%s\n'", fullpath);
+    } else {
+      printf("getline failure.\n");
+    }
+    free(buff);
+  }
+  return 0;
+}

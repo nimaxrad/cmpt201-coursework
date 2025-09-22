@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+
+  pid_t a = getpid();
+  fork();
+
+  execl('usr/bin/ls','ls',NULL);
+
+
+
+
+  return 0;
+}
