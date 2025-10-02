@@ -1,0 +1,40 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+  int data;
+  struct Node *next;
+};
+
+struct Node *
+createNode(int data) {
+
+  struct Node *newNode = malloc(sizeof(*newNode));
+  newNode->data = data;
+  newNode->next = NULL;
+  return newNode;
+}
+
+void append(struct Node **head, int data) {
+struct Node *tmp=&head;
+
+  // to do
+}
+
+void traverse(struct Node *head) {}
+int main(void) {
+  struct Node *head = NULL;
+  append(&head, 1);
+  append(&head, 2);
+  append(&head, 3);
+
+  printf("linked list:");
+  struct Node *current = head;
+  while (current != NULL) {
+
+    struct Node *tmp = current;
+    current = current->next;
+    free(tmp);
+    return 0;
+  }
+}

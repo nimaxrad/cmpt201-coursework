@@ -1,0 +1,43 @@
+#define _DEFAULT_SOURCE
+#define _ISOC99_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#define BLOCK_SIZE 128
+#define HEAP_SIZE 256
+#define BUFF_SIZE 64
+
+struct header {
+
+  uint64_t size;
+  struct header *next;
+};
+
+void handle_error(const char *msg) {
+
+  perror(msg);
+  exit(EXIT_FAILURE);
+}
+
+void print_out(char *format, void *data, size_t data_size) {
+
+  char buf[BUFF_SIZE];
+  ssize_t len = snprintf(buf, BUFF_SIZE, format,
+                         data_size == sizeof(uint64_t) ? *(uint64_t *)data
+                                                       : *(void **)data);
+  if(len <0){
+    handle_error("sprintf");
+  }
+  write(STDOUT_FILENO, buf, len);
+}
+
+int main(void) {
+
+  printf("lab4\n");
+  void *size_current_break;
+  size_current_break = sbrk(0);
+  return 0;
+}

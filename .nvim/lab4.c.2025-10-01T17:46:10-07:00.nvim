@@ -1,0 +1,10 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdint.h>
+#include <stdio.h>
+int main(void) {
+
+  printf("lab4\n");
+  uint64_t size_current_break;
+  size_current_break = sbrk(0);
+  return 0;
+}
