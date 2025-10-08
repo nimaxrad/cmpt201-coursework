@@ -48,30 +48,23 @@ void initialize_block(struct header *block, uint64_t size, struct header *next,
 
   block->size = size;
   block->next = next;
-  memset(block + 1, fill_value, size - sizeof(struct header));
+  memset(block+1,fill_value,size-sizeof(struct header));
 }
 
 int main(void) {
 
   printf("lab4\n");
-  // void *size_current_break;
+  //void *size_current_break;
   char *heap_start = sbrk(0);
-  if (sbrk(HEAP_SIZE) == (void *)-1) {
+  if(sbrk(HEAP_SIZE)==(void *)-1){
 
     handle_error("sbrk");
+
   }
-  struct header *first_block = (struct header *)heap_start;
-  struct header *second_block = (struct header *)(heap_start + BLOCK_SIZE);
-  initialize_block(first_block, BLOCK_SIZE, NULL, 0);
-  initialize_block(second_block, BLOCK_SIZE, first_block, 1);
-  print_out("first block:       %p\n", &first_block, sizeof(first_block));
-  print_out("second block:      %p\n", &second_block, sizeof(second_block));
-  print_out("first block size:  %lu\n", &first_block->size,
-            sizeof(first_block->size));
-  print_out("second_block size: %lu\n", &second_block->size,
-            sizeof(second_block->size));
-  print_out("first block next:  %p\n", &first_block->next,
-            sizeof(first_block->next));
+  struct header *first_block=(struct header *)heap_start;
+  struct header *second_block=(struct header *)(heap_start + BLOCK_SIZE);
+  initialize_block(first_block,BLOCK_SIZE,NULL,0);
+  initialize_block(second_block,BLOCK_SIZE,first_block,1);
 
   return 0;
 }

@@ -68,10 +68,7 @@ int main(void) {
   print_out("second block:      %p\n", &second_block, sizeof(second_block));
   print_out("first block size:  %lu\n", &first_block->size,
             sizeof(first_block->size));
-  print_out("second_block size: %lu\n", &second_block->size,
-            sizeof(second_block->size));
-  print_out("first block next:  %p\n", &first_block->next,
-            sizeof(first_block->next));
+  print_out("second_block size: %lu\n", &second_block->size, sizeof(second_block->size));
 
   return 0;
 }

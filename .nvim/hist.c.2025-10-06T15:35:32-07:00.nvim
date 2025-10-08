@@ -1,0 +1,19 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+struct hist {
+  size_t index;
+  char *hist;
+};
+
+int main(void) {
+
+  struct hist *history_list = (struct hist *)malloc(100 * sizeof(struct hist));
+  for(size_t i=0;i<100;i++){
+    *(history_list + i)->index;
+  }
+
+}
