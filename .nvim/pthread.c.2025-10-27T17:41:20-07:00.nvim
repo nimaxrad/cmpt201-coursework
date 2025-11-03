@@ -1,0 +1,38 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int count =0;
+void *myThreadFunc(void *arg) {
+  for(int i =0; i<100000;i++){
+  pthread_mutex_lock(&mutex);
+  count++;
+  pthread_mutex_unlock(&mutex);
+  }
+
+  pthread_exit(0);
+}
+
+int main() {
+
+  pthread_t thread1;
+  pthread_t thread2;
+
+  int arg = 1;
+  int arg2 = 2;
+  if (pthread_create(&thread1, NULL, myThreadFunc, &arg) != 0) {
+    perror("pthread1");
+    return 1;
+  }
+  if (pthread_create(&thread2, NULL, myThreadFunc, &arg2) != 0) {
+    perror("pthread2");
+    return 1;
+  }
+
+  pthread_join(thread1, NULL);
+  // printf("thread has finished.\n");
+  pthread_join(thread2, NULL);
+  printf("%d\n",count);
+
+  return 0;
+}

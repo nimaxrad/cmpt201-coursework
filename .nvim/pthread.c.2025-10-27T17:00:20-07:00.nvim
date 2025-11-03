@@ -1,0 +1,27 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+
+void *myThreadFunc(void *arg) {
+  int *num = (int *)arg;
+  printf("thread: %d", *num);
+  sleep(1);
+  return NULL;
+}
+
+int main(){
+
+pthread_t thread;
+int arg=42;
+if(pthread_create(&thread, NULL,myThreadFunc, NULL) != 0){
+  perror("pthread");
+  return 1;
+}
+
+printf("MAIN THREAD IS RUNNING \n");
+pthread_join(thread,NULL);
+printf("thread has finished.\n");
+return 0;
+
+
+}

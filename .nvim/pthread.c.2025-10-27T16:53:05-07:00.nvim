@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+
+void* myThreadFunc(void *arg){
+int *num = (int*)arg;
+printf("thread: %d", *num);
+sleep(1);
+return NULL;
+
+}
+

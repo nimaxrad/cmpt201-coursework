@@ -1,0 +1,19 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+static void *func(void *arg) { 
+
+  write(STDOUT_FILENO, "hello\n", 6);
+
+  pthread_exit(0); }
+int main(int argc, char *argv[]) {
+
+  pthread_t t1;
+  pthread_t t2;
+  pthread_create(&t2, NULL, func, NULL);
+  pthread_create(&t1, NULL, func, NULL);
+  pthread_join(t1, NULL);
+
+}
