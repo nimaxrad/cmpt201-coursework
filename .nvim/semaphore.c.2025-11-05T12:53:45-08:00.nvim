@@ -1,0 +1,12 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define SIZE 10
+
+static char buff[SIZE] = {0};
+static int in = 0, out = 0;
+static sem_t filled_cnt;
+static sem_t avail_cnt;
+static pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER

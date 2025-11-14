@@ -1,0 +1,8 @@
+#include <sys/stat.h>
+#include <stdio.h>
+
+int main(){
+char *path = "";
+int status = stat()
+
+}
